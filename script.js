@@ -21,18 +21,22 @@ const userPlay = (playerChoice) => {
 const playRound = (playerChoice, computerChoice) => {
   switch (playerChoice) {
     case "rock":
-      if (computerChoice === "rock") return "It's a tie!";
-      if (computerChoice === "paper") return "You lose this round.";
-      return "You win this round!";
+      if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
+      if (computerChoice === "paper")
+        return "You lose this round. Comp chose paper.";
+      return "You win this round! Comp chose scissors. Rock beats scissors.";
     case "paper":
-      if (computerChoice === "rock") return "You win this round!";
-      if (computerChoice === "paper") return "It's a tie!";
-      return "You lose this round.";
+      if (computerChoice === "rock")
+        return "You win this round! Comp chose rock.";
+      if (computerChoice === "paper") return "It's a tie! Paper ties paper.";
+      return "You lose this round. Comp chose scissors.";
     case "scissors":
-      if (computerChoice === "rock") return "You lose this round.";
-      if (computerChoice === "paper") return "You win this round!";
-      return "It's a tie!";
+      if (computerChoice === "rock")
+        return "You lose this round. Comp chose rock.";
+      if (computerChoice === "paper")
+        return "You win this round! Comp chose paper.";
+      return "It's a tie! Comp chose scissors.";
     default:
-      return "Invalid input, you lose this round.";
+      return "Invalid input, you lose this round. Comp chose rock.";
   }
 };
