@@ -47,7 +47,7 @@ const game = (rounds) => {
       prompt("Choose rock (0), paper (1) or scissors (2).")
     );
     const computerChoice = computerPlay();
-    console.log(playRound(playerChoice, computerChoice));
+    alert(playRound(playerChoice, computerChoice));
     rounds--;
   }
 };
