@@ -15,7 +15,7 @@ const userPlay = (playerChoice) => {
   //If it is found, return the corresponding string value.
   //If it is not, return undefined.
   let optionIndex = options.indexOf(playerChoice.toLowerCase());
-  optionIndex !== -1 ? options.at(optionIndex) : undefined;
+  return optionIndex !== -1 ? options.at(optionIndex) : undefined;
 };
 
 const playRound = (playerChoice, computerChoice) => {
