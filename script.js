@@ -17,3 +17,22 @@ const userPlay = (playerChoice) => {
   let optionIndex = options.indexOf(playerChoice.toLowerCase());
   optionIndex !== -1 ? options.at(optionIndex) : undefined;
 };
+
+const playRound = (playerChoice, computerChoice) => {
+  switch (playerChoice) {
+    case "rock":
+      if (computerChoice === "rock") return "It's a tie!";
+      if (computerChoice === "paper") return "You lose this round.";
+      return "You win this round!";
+    case "paper":
+      if (computerChoice === "rock") return "You win this round!";
+      if (computerChoice === "paper") return "It's a tie!";
+      return "You lose this round.";
+    case "scissors":
+      if (computerChoice === "rock") return "You lose this round.";
+      if (computerChoice === "paper") return "You win this round!";
+      return "It's a tie!";
+    default:
+      return "Invalid input, you lose this round.";
+  }
+};
