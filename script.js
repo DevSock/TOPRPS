@@ -24,7 +24,7 @@ const playRound = (playerChoice, computerChoice) => {
       if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
       if (computerChoice === "paper")
         return "You lose this round. Comp chose paper.";
-      return "You win this round! Comp chose scissors. Rock beats scissors.";
+      return "You win this round! Comp chose scissors.";
     case "paper":
       if (computerChoice === "rock")
         return "You win this round! Comp chose rock.";
