@@ -1,4 +1,4 @@
-# TOPRPC
+# TOPRPS
 
 The Odin Project Rock Paper Scissors
 
