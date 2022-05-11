@@ -40,3 +40,16 @@ const playRound = (playerChoice, computerChoice) => {
       return "Invalid input, you lose this round. Comp chose rock.";
   }
 };
+
+const game = (rounds) => {
+  while (rounds > 0) {
+    const playerChoice = userPlay(
+      prompt("Choose rock (0), paper (1) or scissors (2).")
+    );
+    const computerChoice = computerPlay();
+    console.log(playRound(playerChoice, computerChoice));
+    rounds--;
+  }
+};
+
+game(5);
