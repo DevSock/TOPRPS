@@ -37,3 +37,25 @@ main {
   display: flex;
   justify-content: center;
 }
+
+.selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.weapons {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0 10px 0;
+}
+
+.weapon {
+  width: 200px;
+  height: 200px;
+  margin: 0px 100px;
+}
+
+.submit {
+  align-self: center;
+}
