@@ -28,3 +28,12 @@ main {
   font-weight: 300;
   text-align: right;
 }
+
+.outcome {
+  text-align: center;
+  color: maroon;
+  padding: 130px 0 50px 0;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+}
