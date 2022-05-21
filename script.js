@@ -60,7 +60,14 @@ const activate = (weapon) => {
   if (weapon.classList.contains("active")) return;
   weaponsList.forEach((weapon) => weapon.classList.remove("active"));
   weapon.classList.add("active");
-  selection = weapon;
+
+  if (weapon.classList.contains("rock")) {
+    selection = "rock";
+  } else if (weapon.classList.contains("paper")) {
+    selection = "paper";
+  } else {
+    selection = "scissors";
+  }
 };
 
 weaponsList.forEach((weapon) =>
