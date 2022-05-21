@@ -1,4 +1,8 @@
 const options = ["rock", "paper", "scissors"];
+const outcomeText = document.querySelector(".outcome-text");
+const weaponsList = document.querySelectorAll(".weapon");
+const submitButton = document.querySelector(".submit");
+let selection = null;
 
 const computerPlay = () => {
   const randomNumber = Math.floor(Math.random() * 3);
@@ -51,5 +55,3 @@ const game = (rounds) => {
     rounds--;
   }
 };
-
-game(5);
