@@ -55,3 +55,14 @@ const game = (rounds) => {
     rounds--;
   }
 };
+
+const activate = (weapon) => {
+  weaponsList.forEach((weapon) => weapon.classList.remove("active"));
+  weapon.classList.add("active");
+};
+
+weaponsList.forEach((weapon) =>
+  weapon.addEventListener("click", (e) => {
+    activate(e.target);
+  })
+);
