@@ -57,6 +57,7 @@ const game = (rounds) => {
 };
 
 const activate = (weapon) => {
+  if (weapon.classList.contains("active")) return;
   weaponsList.forEach((weapon) => weapon.classList.remove("active"));
   weapon.classList.add("active");
   selection = weapon;
