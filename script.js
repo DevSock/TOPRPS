@@ -4,6 +4,8 @@ const weaponsList = document.querySelectorAll(".weapon");
 const submitButton = document.querySelector(".submit");
 let selection = null;
 let win = null;
+let playerScore = 0;
+let compScore = 0;
 
 const computerPlay = () => {
   const randomNumber = Math.floor(Math.random() * 3);
@@ -29,16 +31,20 @@ const playRound = (playerChoice, computerChoice) => {
       if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
       if (computerChoice === "paper") {
         win = false;
+        compScore++;
         return "You lose this round. Comp chose paper.";
       }
       win = true;
+      playerScore++;
       return "You win this round! Comp chose scissors.";
     case "paper":
       if (computerChoice === "paper") return "It's a tie! Paper ties paper.";
       if (computerChoice === "scissors") {
         win = false;
+        compScore++;
         return "You lose this round. Comp chose scissors.";
       }
+      playerScore++;
       win = true;
       return "You win this round! Comp chose rock.";
     case "scissors":
@@ -46,11 +52,14 @@ const playRound = (playerChoice, computerChoice) => {
         return "It's a tie! Comp chose scissors.";
       if (computerChoice === "rock") {
         win = false;
+        compScore++;
         return "You lose this round. Comp chose rock.";
       }
+      playerScore++;
       win = true;
       return "You win this round! Comp chose paper.";
     default:
+      compScore++;
       win = false;
       return "Invalid input, you lose this round. Comp chose rock.";
   }
