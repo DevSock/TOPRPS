@@ -89,3 +89,12 @@ weaponsList.forEach((weapon) =>
     activate(e.target);
   })
 );
+
+submitButton.addEventListener("click", () => {
+  if (!selection) return;
+  const result = playRound(selection, computerPlay());
+  outcomeText.textContent = result;
+  weaponsList.forEach((weapon) => weapon.classList.remove("active"));
+  submitButton.classList.remove("active-submit");
+  selection = null;
+});
