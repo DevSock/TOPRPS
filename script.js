@@ -58,6 +58,9 @@ const game = (rounds) => {
 
 const activate = (weapon) => {
   if (weapon.classList.contains("active")) return;
+  if (!submitButton.classList.contains("active-submit"))
+    submitButton.classList.add("active-submit");
+
   weaponsList.forEach((weapon) => weapon.classList.remove("active"));
   weapon.classList.add("active");
 
