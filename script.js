@@ -79,6 +79,15 @@ const doDamage = (player) => {
   }
 };
 
+const isEnd = () => {
+  if (playerHealth === 0) {
+    return true;
+  } else if (compHealth === 0) {
+    return true;
+  }
+  return false;
+};
+
 weaponsList.forEach((weapon) =>
   weapon.addEventListener("click", (e) => {
     activate(e.target);
