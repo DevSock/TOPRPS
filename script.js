@@ -4,25 +4,12 @@ const weaponsList = document.querySelectorAll(".weapon");
 const submitButton = document.querySelector(".submit");
 let selection = null;
 let win = null;
-let playerScore = 0;
-let compScore = 0;
+let playerHealth = 5;
+let compHealth = 5;
 
 const computerPlay = () => {
   const randomNumber = Math.floor(Math.random() * 3);
   return options[randomNumber];
-};
-
-const userPlay = (playerChoice) => {
-  //Check if player's choice is a numerical value within the required range.
-  //If it is, return the corresponding string value.
-  //If it is not, handle playerChoice as string.
-  if (!isNaN(playerChoice)) return options.at(Math.trunc(+playerChoice));
-
-  //Try to find index of playerChoice in options array.
-  //If it is found, return the corresponding string value.
-  //If it is not, return undefined.
-  let optionIndex = options.indexOf(playerChoice.toLowerCase());
-  return optionIndex !== -1 ? options.at(optionIndex) : undefined;
 };
 
 const playRound = (playerChoice, computerChoice) => {
@@ -31,20 +18,20 @@ const playRound = (playerChoice, computerChoice) => {
       if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
       if (computerChoice === "paper") {
         win = false;
-        compScore++;
+        compHealth--;
         return "You lose this round. Comp chose paper.";
       }
       win = true;
-      playerScore++;
+      playerHealth--;
       return "You win this round! Comp chose scissors.";
     case "paper":
       if (computerChoice === "paper") return "It's a tie! Paper ties paper.";
       if (computerChoice === "scissors") {
         win = false;
-        compScore++;
+        compHealth--;
         return "You lose this round. Comp chose scissors.";
       }
-      playerScore++;
+      playerHealth--;
       win = true;
       return "You win this round! Comp chose rock.";
     case "scissors":
@@ -52,27 +39,16 @@ const playRound = (playerChoice, computerChoice) => {
         return "It's a tie! Comp chose scissors.";
       if (computerChoice === "rock") {
         win = false;
-        compScore++;
+        compHealth--;
         return "You lose this round. Comp chose rock.";
       }
-      playerScore++;
+      playerHealth--;
       win = true;
       return "You win this round! Comp chose paper.";
     default:
-      compScore++;
+      compHealth--;
       win = false;
       return "Invalid input, you lose this round. Comp chose rock.";
-  }
-};
-
-const game = (rounds) => {
-  while (rounds > 0) {
-    const playerChoice = userPlay(
-      prompt("Choose rock (0), paper (1) or scissors (2).")
-    );
-    const computerChoice = computerPlay();
-    alert(playRound(playerChoice, computerChoice));
-    rounds--;
   }
 };
 
