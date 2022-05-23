@@ -79,6 +79,14 @@ const doDamage = (player) => {
   }
 };
 
+const assignOutcome = (computerChoice) => {
+  if (win) {
+    outcomeText.innerHTML = `You win! ${computerChoice} beats ${selection}`;
+  } else {
+    outcomeText.innerHTML = `You lose! ${selection} beats ${computerChoice}`;
+  }
+};
+
 const isEnd = () => {
   if (playerHealth === 0) {
     return true;
