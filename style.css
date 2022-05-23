@@ -13,7 +13,7 @@ main {
 .heading {
   text-align: center;
   color: darkslategrey;
-  padding: 20px 0;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
 }
@@ -32,7 +32,7 @@ main {
 .outcome {
   text-align: center;
   color: #a56900;
-  padding: 130px 0 50px 0;
+  padding: 25px 0 25px 0;
   font-size: 80px;
   display: flex;
   justify-content: center;
@@ -47,27 +47,44 @@ main {
 .weapons {
   display: flex;
   justify-content: center;
-  padding: 50px 0;
+  padding: 25px 0;
 }
 
 .weapon {
   width: 200px;
   height: 200px;
   margin: 0px 100px;
-  padding: 10px 10px 30px 10px;
+  padding: 10px;
   transition: 0.2s;
   cursor: pointer;
 }
 
+.lives {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 300px;
+}
+
+.lives-title {
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+  color: #a56900;
+  padding: 15px;
+}
+
+.submission {
+  display: flex;
+  justify-content: center;
+  padding: 25px 0;
+}
+
 .submit {
-  align-self: center;
   border: 3px solid darkslategray;
   border-radius: 10px;
   font-size: 50px;
   color: darkslategray;
   background-color: rgba(0, 0, 0, 0);
-  margin: 50px;
-  padding: 5px;
   box-shadow: 0px 3px 5px darkslategray;
   cursor: pointer;
   transition: 0.2s;
