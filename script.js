@@ -5,7 +5,7 @@ const submitButton = document.querySelector(".submit");
 const playerHearts = document.querySelectorAll(".lives-player .lives-heart");
 const compHearts = document.querySelectorAll(".lives-comp .lives-heart");
 let selection = null;
-let win = null;
+let win = false;
 let playerHealth = 4;
 let compHealth = 4;
 
@@ -80,7 +80,11 @@ const doDamage = (player) => {
 };
 
 const assignOutcome = (computerChoice) => {
-  if (win) {
+  if (isEnd()) return;
+
+  if (win === null) {
+    outcomeText.innerHTML = `Tie game! ${selection} ties ${computerChoice}`;
+  } else if (win) {
     outcomeText.innerHTML = `You win! ${computerChoice} beats ${selection}`;
   } else {
     outcomeText.innerHTML = `You lose! ${selection} beats ${computerChoice}`;
