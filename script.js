@@ -72,14 +72,10 @@ const activate = (weapon) => {
 const doDamage = (player) => {
   if (player === "player") {
     playerHearts.item(playerHealth).classList.add("dead");
-    if (playerHealth === 0) return false;
     playerHealth--;
-    return true;
   } else {
     compHearts.item(compHealth).classList.add("dead");
-    if (compHealth === 0) return false;
     compHealth--;
-    return true;
   }
 };
 
