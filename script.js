@@ -2,10 +2,12 @@ const options = ["rock", "paper", "scissors"];
 const outcomeText = document.querySelector(".outcome-text");
 const weaponsList = document.querySelectorAll(".weapon");
 const submitButton = document.querySelector(".submit");
+const playerHearts = document.querySelectorAll(".lives-player lives-heart");
+const compHearts = document.querySelectorAll(".lives-comp lives-heart");
 let selection = null;
 let win = null;
-let playerHealth = 5;
-let compHealth = 5;
+let playerHealth = 4;
+let compHealth = 4;
 
 const computerPlay = () => {
   const randomNumber = Math.floor(Math.random() * 3);
