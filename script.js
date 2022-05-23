@@ -2,8 +2,8 @@ const options = ["rock", "paper", "scissors"];
 const outcomeText = document.querySelector(".outcome-text");
 const weaponsList = document.querySelectorAll(".weapon");
 const submitButton = document.querySelector(".submit");
-const playerHearts = document.querySelectorAll(".lives-player lives-heart");
-const compHearts = document.querySelectorAll(".lives-comp lives-heart");
+const playerHearts = document.querySelectorAll(".lives-player .lives-heart");
+const compHearts = document.querySelectorAll(".lives-comp .lives-heart");
 let selection = null;
 let win = null;
 let playerHealth = 4;
@@ -20,36 +20,34 @@ const playRound = (playerChoice, computerChoice) => {
       if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
       if (computerChoice === "paper") {
         win = false;
-        compHealth--;
+        takeDamage("player");
         return "You lose this round. Comp chose paper.";
       }
       win = true;
-      playerHealth--;
+      takeDamage("comp");
       return "You win this round! Comp chose scissors.";
     case "paper":
       if (computerChoice === "paper") return "It's a tie! Paper ties paper.";
       if (computerChoice === "scissors") {
         win = false;
-        compHealth--;
+        takeDamage("player");
         return "You lose this round. Comp chose scissors.";
       }
-      playerHealth--;
       win = true;
+      takeDamage("comp");
       return "You win this round! Comp chose rock.";
     case "scissors":
       if (computerChoice === "scissors")
         return "It's a tie! Comp chose scissors.";
       if (computerChoice === "rock") {
         win = false;
-        compHealth--;
+        takeDamage("player");
         return "You lose this round. Comp chose rock.";
       }
-      playerHealth--;
-      win = true;
+      takeDamage("comp");
       return "You win this round! Comp chose paper.";
     default:
-      compHealth--;
-      win = false;
+      takeDamage("player");
       return "Invalid input, you lose this round. Comp chose rock.";
   }
 };
@@ -68,6 +66,20 @@ const activate = (weapon) => {
     selection = "paper";
   } else {
     selection = "scissors";
+  }
+};
+
+const takeDamage = (player) => {
+  if (player === "player") {
+    playerHearts.item(playerHealth).classList.add("dead");
+    if (playerHealth === 0) return false;
+    playerHealth--;
+    return true;
+  } else {
+    compHearts.item(compHealth).classList.add("dead");
+    if (compHealth === 0) return false;
+    compHealth--;
+    return true;
   }
 };
 
