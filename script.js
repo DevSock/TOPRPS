@@ -20,34 +20,34 @@ const playRound = (playerChoice, computerChoice) => {
       if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
       if (computerChoice === "paper") {
         win = false;
-        takeDamage("player");
+        doDamage("player");
         return "You lose this round. Comp chose paper.";
       }
       win = true;
-      takeDamage("comp");
+      doDamage("comp");
       return "You win this round! Comp chose scissors.";
     case "paper":
       if (computerChoice === "paper") return "It's a tie! Paper ties paper.";
       if (computerChoice === "scissors") {
         win = false;
-        takeDamage("player");
+        doDamage("player");
         return "You lose this round. Comp chose scissors.";
       }
       win = true;
-      takeDamage("comp");
+      doDamage("comp");
       return "You win this round! Comp chose rock.";
     case "scissors":
       if (computerChoice === "scissors")
         return "It's a tie! Comp chose scissors.";
       if (computerChoice === "rock") {
         win = false;
-        takeDamage("player");
+        doDamage("player");
         return "You lose this round. Comp chose rock.";
       }
-      takeDamage("comp");
+      doDamage("comp");
       return "You win this round! Comp chose paper.";
     default:
-      takeDamage("player");
+      doDamage("player");
       return "Invalid input, you lose this round. Comp chose rock.";
   }
 };
@@ -69,7 +69,7 @@ const activate = (weapon) => {
   }
 };
 
-const takeDamage = (player) => {
+const doDamage = (player) => {
   if (player === "player") {
     playerHearts.item(playerHealth).classList.add("dead");
     if (playerHealth === 0) return false;
