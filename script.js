@@ -100,6 +100,15 @@ const isEnd = () => {
   return false;
 };
 
+const handleOutcome = (player, computerChoice) => {
+  // if(isEnd()) {
+  //   doEnd();
+  //   return;
+  // }
+  doDamage(player);
+  assignOutcome(computerChoice);
+};
+
 weaponsList.forEach((weapon) =>
   weapon.addEventListener("click", (e) => {
     activate(e.target);
