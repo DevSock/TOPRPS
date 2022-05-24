@@ -1,58 +1,68 @@
-const options = ["rock", "paper", "scissors"];
-const outcomeText = document.querySelector(".outcome-text");
+const options = ["Rock", "Paper", "Scissors"];
+const outcomeText = document.querySelector(".outcome-text strong");
 const weaponsList = document.querySelectorAll(".weapon");
 const submitButton = document.querySelector(".submit");
 const playerHearts = document.querySelectorAll(".lives-player .lives-heart");
 const compHearts = document.querySelectorAll(".lives-comp .lives-heart");
 let selection = null;
-let win = false;
-let playerHealth = 4;
-let compHealth = 4;
+let playerHealth = 5;
+let compHealth = 5;
 
-const computerPlay = () => {
-  const randomNumber = Math.floor(Math.random() * 3);
-  return options[randomNumber];
-};
+const computerPlay = () => options[Math.floor(Math.random() * options.length)];
+const isEnd = () => (playerHealth <= 0 || compHealth <= 0 ? true : false);
 
-const playRound = (playerChoice, computerChoice) => {
-  switch (playerChoice) {
-    case "rock":
-      if (computerChoice === "rock") return "It's a tie! Rock ties rock.";
-      if (computerChoice === "paper") {
-        win = false;
-        doDamage("player");
-        return "You lose this round. Comp chose paper.";
-      }
-      win = true;
-      doDamage("comp");
-      return "You win this round! Comp chose scissors.";
-    case "paper":
-      if (computerChoice === "paper") return "It's a tie! Paper ties paper.";
-      if (computerChoice === "scissors") {
-        win = false;
-        doDamage("player");
-        return "You lose this round. Comp chose scissors.";
-      }
-      win = true;
-      doDamage("comp");
-      return "You win this round! Comp chose rock.";
-    case "scissors":
-      if (computerChoice === "scissors")
-        return "It's a tie! Comp chose scissors.";
-      if (computerChoice === "rock") {
-        win = false;
-        doDamage("player");
-        return "You lose this round. Comp chose rock.";
-      }
-      doDamage("comp");
-      return "You win this round! Comp chose paper.";
-    default:
-      doDamage("player");
-      return "Invalid input, you lose this round. Comp chose rock.";
+function playRound(playerChoice, computerChoice) {
+  function mod(a, b) {
+    const c = a % b;
+    return c < 0 ? c + b : c;
   }
-};
+  const a = options.indexOf(playerChoice);
+  const b = options.indexOf(computerChoice);
 
-const activate = (weapon) => {
+  if (a == b) {
+    handleOutcome(null, null, playerChoice, computerChoice);
+    return;
+  }
+  if (mod(a - b, options.length) < options.length / 2) {
+    handleOutcome(true, "comp", playerChoice, computerChoice);
+    return;
+  } else {
+    handleOutcome(false, "player", playerChoice, computerChoice);
+  }
+}
+
+function handleOutcome(roundWin, player, playerChoice, computerChoice) {
+  if (isEnd()) {
+    // doEnd();
+    return;
+  }
+  if (player) doDamage(player);
+  assignOutcome(roundWin, playerChoice, computerChoice);
+}
+
+function doDamage(player) {
+  if (player === "player") {
+    playerHearts.item(playerHealth - 1).classList.add("dead");
+    playerHealth--;
+  } else {
+    compHearts.item(compHealth - 1).classList.add("dead");
+    compHealth--;
+  }
+}
+
+function assignOutcome(roundWin, playerChoice, computerChoice) {
+  if (isEnd()) return;
+
+  if (roundWin === null) {
+    outcomeText.textContent = `Tie game! ${playerChoice} ties ${computerChoice}`;
+  } else if (roundWin) {
+    outcomeText.textContent = `You win! ${playerChoice} beats ${computerChoice}`;
+  } else {
+    outcomeText.textContent = `You lose! ${computerChoice} beats ${playerChoice}`;
+  }
+}
+
+function activate(weapon) {
   if (weapon.classList.contains("active")) return;
   if (!submitButton.classList.contains("active-submit"))
     submitButton.classList.add("active-submit");
@@ -61,53 +71,13 @@ const activate = (weapon) => {
   weapon.classList.add("active");
 
   if (weapon.classList.contains("rock")) {
-    selection = "rock";
+    selection = "Rock";
   } else if (weapon.classList.contains("paper")) {
-    selection = "paper";
+    selection = "Paper";
   } else {
-    selection = "scissors";
+    selection = "Scissors";
   }
-};
-
-const doDamage = (player) => {
-  if (player === "player") {
-    playerHearts.item(playerHealth).classList.add("dead");
-    playerHealth--;
-  } else {
-    compHearts.item(compHealth).classList.add("dead");
-    compHealth--;
-  }
-};
-
-const assignOutcome = (computerChoice) => {
-  if (isEnd()) return;
-
-  if (win === null) {
-    outcomeText.innerHTML = `Tie game! ${selection} ties ${computerChoice}`;
-  } else if (win) {
-    outcomeText.innerHTML = `You win! ${computerChoice} beats ${selection}`;
-  } else {
-    outcomeText.innerHTML = `You lose! ${selection} beats ${computerChoice}`;
-  }
-};
-
-const isEnd = () => {
-  if (playerHealth === 0) {
-    return true;
-  } else if (compHealth === 0) {
-    return true;
-  }
-  return false;
-};
-
-const handleOutcome = (player, computerChoice) => {
-  // if(isEnd()) {
-  //   doEnd();
-  //   return;
-  // }
-  doDamage(player);
-  assignOutcome(computerChoice);
-};
+}
 
 weaponsList.forEach((weapon) =>
   weapon.addEventListener("click", (e) => {
@@ -117,8 +87,7 @@ weaponsList.forEach((weapon) =>
 
 submitButton.addEventListener("click", () => {
   if (!selection) return;
-  const result = playRound(selection, computerPlay());
-  outcomeText.textContent = result;
+  playRound(selection, computerPlay());
   weaponsList.forEach((weapon) => weapon.classList.remove("active"));
   submitButton.classList.remove("active-submit");
   selection = null;
