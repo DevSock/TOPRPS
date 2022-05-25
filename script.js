@@ -34,6 +34,15 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
+function doSubmit() {
+  if (!submitButton.classList.contains("active-submit")) return;
+  if (!selection) return;
+  playRound(selection, computerPlay());
+  weaponsList.forEach((weapon) => weapon.classList.remove("active"));
+  submitButton.classList.remove("active-submit");
+  selection = null;
+}
+
 function doEnd() {
   if (playerHealth <= 0) {
     outcomeText.textContent = "Game over man! You've lost all your lives!";
@@ -114,12 +123,5 @@ weaponsList.forEach((weapon) =>
   })
 );
 
-submitButton.addEventListener("click", () => {
-  if (!selection) return;
-  playRound(selection, computerPlay());
-  weaponsList.forEach((weapon) => weapon.classList.remove("active"));
-  submitButton.classList.remove("active-submit");
-  selection = null;
-});
-
+submitButton.addEventListener("click", doSubmit);
 restartButton.addEventListener("click", doRestart);
