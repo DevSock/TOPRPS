@@ -47,6 +47,20 @@ function doEnd() {
   restartButton.style.display = "block";
 }
 
+function doRestart() {
+  playerHealth = 5;
+  compHealth = 5;
+  submitButton.classList.remove("active-submit");
+  weaponsList.forEach((weapon) => weapon.classList.remove("active"));
+  playerHearts.forEach((heart) => heart.classList.remove("dead"));
+  compHearts.forEach((heart) => heart.classList.remove("dead"));
+  lives.style.display = "flex";
+  submitButton.style.display = "block";
+  selections.style.display = "flex";
+  restartButton.style.display = "none";
+  outcomeText.textContent = "- Please Select Your Weapon -";
+}
+
 function handleOutcome(roundWin, player, playerChoice, computerChoice) {
   if (player) doDamage(player);
   assignOutcome(roundWin, playerChoice, computerChoice);
@@ -107,3 +121,5 @@ submitButton.addEventListener("click", () => {
   submitButton.classList.remove("active-submit");
   selection = null;
 });
+
+restartButton.addEventListener("click", doRestart);
