@@ -94,6 +94,11 @@ main {
   transition: 0.2s;
 }
 
+.restart {
+  display: none;
+  margin: 200px 0;
+}
+
 .active {
   filter: invert(0.35) sepia(1) saturate(5);
 }
