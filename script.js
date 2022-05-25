@@ -1,3 +1,4 @@
+populateHearts();
 const options = ["Rock", "Paper", "Scissors"];
 const outcomeText = document.querySelector(".outcome-text strong");
 const weaponsList = document.querySelectorAll(".weapon");
@@ -13,6 +14,17 @@ let compHealth = 5;
 
 const computerPlay = () => options[Math.floor(Math.random() * options.length)];
 const isEnd = () => (playerHealth <= 0 || compHealth <= 0 ? true : false);
+
+function populateHearts() {
+  document.querySelectorAll(".lives-hp").forEach((player) => {
+    for (let i = 0; i < 5; i++) {
+      const heart = new Image();
+      heart.src = "resources/Heart.svg";
+      heart.classList.add("lives-heart");
+      player.appendChild(heart);
+    }
+  });
+}
 
 function playRound(playerChoice, computerChoice) {
   function mod(a, b) {
