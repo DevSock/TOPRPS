@@ -1,9 +1,12 @@
 const options = ["Rock", "Paper", "Scissors"];
 const outcomeText = document.querySelector(".outcome-text strong");
 const weaponsList = document.querySelectorAll(".weapon");
+const selections = document.querySelector(".selection");
 const submitButton = document.querySelector(".submit");
+const restartButton = document.querySelector(".restart");
 const playerHearts = document.querySelectorAll(".lives-player .lives-heart");
 const compHearts = document.querySelectorAll(".lives-comp .lives-heart");
+const lives = document.querySelector(".lives");
 let selection = null;
 let playerHealth = 5;
 let compHealth = 5;
@@ -31,11 +34,20 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
-function handleOutcome(roundWin, player, playerChoice, computerChoice) {
-  if (isEnd()) {
-    // doEnd();
-    return;
+function doEnd() {
+  if (playerHealth <= 0) {
+    outcomeText.textContent = "Game over man! You've lost all your lives!";
+  } else {
+    outcomeText.textContent = "You won! Big brain plays for days!";
   }
+
+  lives.style.display = "none";
+  submitButton.style.display = "none";
+  selections.style.display = "none";
+  restartButton.style.display = "block";
+}
+
+function handleOutcome(roundWin, player, playerChoice, computerChoice) {
   if (player) doDamage(player);
   assignOutcome(roundWin, playerChoice, computerChoice);
 }
@@ -51,7 +63,10 @@ function doDamage(player) {
 }
 
 function assignOutcome(roundWin, playerChoice, computerChoice) {
-  if (isEnd()) return;
+  if (isEnd()) {
+    doEnd();
+    return;
+  }
 
   if (roundWin === null) {
     outcomeText.textContent = `Tie game! ${playerChoice} ties ${computerChoice}`;
